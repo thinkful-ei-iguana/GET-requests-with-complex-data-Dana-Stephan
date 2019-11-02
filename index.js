@@ -24,13 +24,33 @@
 //call nat park srvcs api
 
 const waitForSubmit = function() {
-  $('.parks-form').on('submit','.get-parks-nearby', event=> {
+  $('.parks-form').on('submit', event=> {
+    event.preventDefault();
+    const states = $('#state-code').val();
+    const maxResults = $('#num-results').val();
+    //reset values of inputs
+    $('#state-code').val('');
+    $('#num-results').val('10');
+
+    //get function
+    const formattedQuery = formatQueryParams(states,maxResults);
+    getNatParks(formattedQuery);
+
 
   }
   );
 };
 
-const formatQueryParams = function() {
+const getNatParks = function (formattedQuery) {
+
+
+  renderResults(results);//could possibly need more params
+};
+
+const renderResults = function(results)
+
+const formatQueryParams = function(states,maxResults) {
 
 };
 
+$(waitForSubmit());
