@@ -35,22 +35,27 @@ const waitForSubmit = function() {
     //get function
     const formattedQuery = formatQueryParams(states,maxResults);
     getNatParks(formattedQuery);
-
-
-  }
-  );
+  });
 };
 
 const getNatParks = function (formattedQuery) {
-
-
-  renderResults(results);//could possibly need more params
+  fetch(formattedQuery)
+    .then (response => response.json())
+    .then (jsonData => renderResults(jsonData));
 };
 
-const renderResults = function(results)
-
-const formatQueryParams = function(states,maxResults) {
+const renderResults = function(results) {
+  const parks = results.forEach(result => {
+    `<h2 class="park-name>${result.fullName}</h2>
+      <ul class="park-info">
+        <li class="park-description">${result.description}</li>
+        <li class="park-website>${result.url}</li>
+      </ul>`
+  });
 
 };
+// const formatQueryParams = function(states,maxResults) {
+
+// };
 
 $(waitForSubmit());
