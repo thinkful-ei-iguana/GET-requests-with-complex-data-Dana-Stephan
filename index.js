@@ -7,6 +7,8 @@
 
 
 ////Auth:    GKsDzVLVaDTT2BV5cL2YcPso9fWyO17Yl9u3NiWf
+///https://developer.nps.gov/api/v1/parks?api_key=GKsDzVLVaDTT2BV5cL2YcPso9fWyO17Yl9u3NiWf&
+
 
 
 
@@ -20,3 +22,15 @@
 
 
 //call nat park srvcs api
+
+const waitForSubmit = function() {
+  $('.parks-form').on('submit','.get-parks-nearby', event=> {
+
+  }
+  );
+};
+
+const formatQueryParams = function() {
+
+};
+
