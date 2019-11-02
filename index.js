@@ -24,7 +24,7 @@
 //call nat park srvcs api
 
 const waitForSubmit = function() {
-  $('.parks-form').on('submit', event=> {
+  $('.nat-parks').on('submit', event=> {
     event.preventDefault();
     const states = $('#state-code').val();
     const maxResults = $('#num-results').val();
@@ -45,17 +45,26 @@ const getNatParks = function (formattedQuery) {
 };
 
 const renderResults = function(results) {
-  const parks = results.forEach(result => {
-    `<h2 class="park-name>${result.fullName}</h2>
+  console.log(results);
+  const parks = results.data.map(result => {
+    return`<h2 class="park-name">${result.fullName}</h2>
       <ul class="park-info">
         <li class="park-description">${result.description}</li>
-        <li class="park-website>${result.url}</li>
-      </ul>`
-  });
+        <li class="park-website">${result.url}</li>
+      </ul>`;
+  }).join('');
+  console.log(parks);
+  $('.parks').html(parks);
+};
+const formatQueryParams = function(states,maxResults) {
+  console.log(states, maxResults);
+  const endpointAndAuth = 'https://developer.nps.gov/api/v1/parks?api_key=GKsDzVLVaDTT2BV5cL2YcPso9fWyO17Yl9u3NiWf&';
+  
+  const stateCodes = states.split(' ').join(',');
+  const params = ['stateCode='+stateCodes,'limit='+maxResults].join('&');
+  console.log(params);
+  return endpointAndAuth+params;
 
 };
-// const formatQueryParams = function(states,maxResults) {
-
-// };
 
 $(waitForSubmit());
